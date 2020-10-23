@@ -5,6 +5,6 @@ CREATE TABLE `tbl_without_index` (
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `tbl_with_index` LIKE `tbl`;
+CREATE TABLE `tbl_with_index` LIKE `tbl_without_index`;
 
 CREATE INDEX `done_and_id` ON `tbl_with_index` (`done`, `id`);
