@@ -43,5 +43,8 @@ for table in tables:
             t_elapsed = (t_finish - t_start) / 10**9
             print(f'{num_of_done}\t{t_elapsed}', file=f)
 
-            sql = f'UPDATE {table} SET done = TRUE WHERE id IN (f{"%s" * num_of_done})'
-            cursor.execute(sql, range(start, end + 1))
+            sql = f'UPDATE {table} SET done = TRUE WHERE id IN ({",".join([str(x) for x in range(start, end + 1)])})'
+            cursor.execute(sql)
+
+for table in tables:
+    cursor.execute(f'TRUNCATE {table}')
