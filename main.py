@@ -9,6 +9,7 @@ db = MySQLdb.connect(
     port=int(os.environ['MYSQL_PORT']),
     user=os.environ['MYSQL_USER'],
     passwd=os.environ['MYSQL_PASS'],
+    db=os.environ['MYSQL_DB']
 )
 db.autocommit(True)
 cursor = db.cursor()
@@ -43,4 +44,4 @@ for table in tables:
             print(f'{num_of_done}\t{t_elapsed}', file=f)
 
             sql = f'UPDATE {table} SET done = TRUE WHERE id IN (f{"%s" * num_of_done})'
-            cursor.execute(sql, map(lambda x: (x,), range(start, end + 1)))
+            cursor.execute(sql, range(start, end + 1))
