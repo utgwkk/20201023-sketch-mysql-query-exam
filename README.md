@@ -1,0 +1,1 @@
+# 20201023-sketch-mysql-query-exam
