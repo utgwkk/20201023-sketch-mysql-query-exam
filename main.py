@@ -41,8 +41,13 @@ for table in tables:
             t_finish = time.time_ns()
             
             t_elapsed = (t_finish - t_start) / 10**9
-            print(f'{num_of_done}\t{t_elapsed}')
-            print(f'{num_of_done}\t{t_elapsed}', file=f)
+
+            sql = 'EXPLAIN ' + sql
+            cursor.execute(sql)
+            explain_row = cursor.fetchone()
+
+            print(f'{num_of_done}\t{t_elapsed}\t{explain_row[9]}')
+            print(f'{num_of_done}\t{t_elapsed}\t{explain_row[9]}', file=f)
 
             sql = f'UPDATE {table} SET done = TRUE WHERE id IN ({",".join([str(x) for x in range(start, end + 1)])})'
             cursor.execute(sql)
