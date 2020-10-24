@@ -18,10 +18,10 @@ cursor = db.cursor()
 for table in tables:
     sql = f'INSERT INTO {table} (id, done) VALUES (%s, %s)'
     
-    # 1000 * 1000 = 1000000
+    # 10000 * 1000 = 10000000
     for i in range(1000):
-        start = 1000 * i + 1
-        end = 1000 * (i + 1)
+        start = 10000 * i + 1
+        end = 10000 * (i + 1)
         print(f"{start} .. {end}")
 
         values = [(x, 0) for x in range(start, end + 1)]
@@ -30,10 +30,10 @@ for table in tables:
 # exam
 for table in tables:
     with open(f'result.{table}.txt', 'wt') as f:
-        for i in range(1000):
-            start = 1000 * i + 1
-            end = 1000 * (i + 1)
-            num_of_done = 1000 * i
+        for i in range(1001):
+            start = 10000 * i + 1
+            end = 10000 * (i + 1)
+            num_of_done = 10000 * i
 
             sql = f'SELECT * FROM {table} WHERE done = FALSE ORDER BY id ASC LIMIT 50'
             t_start = time.time_ns()
